@@ -9,7 +9,10 @@
         <th>Marka</th>
 
     </thead>
+   
+
     <tr *ngFor="let car of cars">
+
         <td>{{car.id}}</td>
         <td>{{car.brandName}}</td>
         <td>{{car.colorName}}</td>
@@ -17,5 +20,9 @@
         <td>{{car.dailyPrice}}</td>
         <td>{{car.description}}</td>
         <td>{{car.carName}}</td>
+    <button type="button" class="btn btn-outline-success" routerLink="/cars/carDetails/{{car.id}}">Araç Detay</button>
+
     </tr>
+
+
 </table>
