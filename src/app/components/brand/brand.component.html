@@ -1,10 +1,52 @@
+
+<!-- 
 <ul class="list-group">
-    <li [class]="getAllBrandClass()" routerLink="/cars">Tüm Ürünler</li>
+    <li [class]="getAllBrandClass()" routerLink="/cars">Tüm Markalar</li>
     <li (click)="setCurrentBrand(brand)"
         routerLink="/cars/brand/{{brand.id}}"
-        *ngFor="let brand of brands"
+        *ngFor="let brand of brands | brandFilter : filterText"
         [class]="getCurrentBrandClass(brand)">
         {{brand.name}} </li>
 </ul>
 
-<h5 *ngIf="currentBrand">{{currentBrand.name}} seçtiniz</h5>
+<h5 *ngIf="currentBrand">{{currentBrand.name}} seçtiniz</h5> -->
+
+<!-- <div class="mb-3">
+    <label for="filterText" class="form-label">Marka ara</label>
+    <input type="text" class="form-control" id="filterText" placeholder="Aramak istediniz marka">
+  </div>
+  
+  
+  
+  
+  <ul  class="list-group">
+      <li (click)="clearCurrentBrand()" routerLink="/cars" [class]="getAllBrandClass()"> Tüm araçlar </li>
+      <li (click)="setCurrentBrand(brand)" 
+      routerLink="/cars/brand/{{brand.id}}" 
+      *ngFor="let brand of brands" 
+      [class]="getCurrentBrandClass(brand)">
+      {{brand.name}}</li>
+    </ul> -->
+
+    <!-- <ul class="list-group">
+      <li class=" list-group-item bg-dark bg-gradient text-light text-center mb-1 rounded ">
+        <strong>Markalar</strong>
+      </li>
+      <div class="mb-1">
+        <input type="text" [(ngModel)]="filterText" class="form-control" id="filterBrand" placeholder="Marka adı giriniz">
+      </div>
+      <li *ngIf="filterText===''"(click)="currentBrand=null" [class]="getAllBrandClass()" routerLink="/cars">Tüm markalar</li>
+      <li (click)="setCurrentBrand(brand)" [class]="getCurrentBrandClass(brand)" routerLink="cars/brand/{{brand.id}}" *ngFor="let brand of brands | brandFilter:filterText">{{brand.name}}</li>
+    </ul> -->
+
+    <ul class="list-group">
+      <li class=" list-group-item bg-dark bg-gradient text-light text-center mb-1 rounded ">
+        <strong>Markalar</strong>
+      </li>
+      <div class="mb-1">
+        <input type="text" [(ngModel)]="filterText" class="form-control" id="filterBrand" placeholder="Marka adı giriniz">
+      </div>
+      <li *ngIf="filterText===''"(click)="currentBrand=null" [class]="getAllBrandClass()" routerLink="cars">Tüm markalar</li>
+      <li (click)="setCurrentBrand(brand)" [class]="getCurrentBrandClass(brand)" routerLink="cars/brand/{{brand.id}}" *ngFor="let brand of brands | brandFilter:filterText">{{brand.name}}</li>
+    </ul>
+    

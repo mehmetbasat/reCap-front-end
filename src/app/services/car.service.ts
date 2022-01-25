@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Car } from '../models/car';
-import { CarDetails } from '../models/carDetail';
-import { ListResponseModel } from '../models/listResponseModel';
+import { Car } from '../models/entities/car';
+import { ListResponseModel } from '../models/responseModel/listResponseModel';
 
 @Injectable({
   providedIn: 'root',
@@ -13,28 +12,26 @@ export class CarService {
   constructor(private httpClient: HttpClient) {}
 
   getCars(): Observable<ListResponseModel<Car>> {
-    let newPath = this.apiUrl + 'cars/getcardetails';
+    let newPath = this.apiUrl + 'cars/getcarswithdetails';
     return this.httpClient.get<ListResponseModel<Car>>(newPath);
   }
 
-  getCarsByBrand(brandId: number): Observable<ListResponseModel<Car>> {
-    let newPath =
-      this.apiUrl + 'Cars/getcarsbybrandidwithdetails?brandId=' + brandId;
-
+  getCarsByFilter(brandId:number, colorId:number): Observable<ListResponseModel<Car>> {
+    let newPath = this.apiUrl + 'cars/getcarsbyfilterwithdetails?brandid=' + brandId + "&colorid=" + colorId;
+    console.log(newPath)
     return this.httpClient.get<ListResponseModel<Car>>(newPath);
   }
 
-  getCarsByColor(colorId: number): Observable<ListResponseModel<Car>> {
-    let newPath =
-      this.apiUrl + 'Cars/getcarsbycoloridwithdetails?colorId=' + colorId;
-
+  getCarsByBrandId(brandId:number){
+    let newPath = this.apiUrl+ 'cars/getcarsbybrandidwithdetails?brandid=' + brandId;
     return this.httpClient.get<ListResponseModel<Car>>(newPath);
   }
 
-  getCarDetailByCarId(carId:number):Observable<ListResponseModel<CarDetails>>{
-    let newPath=this.apiUrl+"cars/GetCardetailsByCarId?carId="+carId;
-    return this.httpClient.get<ListResponseModel<CarDetails>>(newPath);
+  getCarsByColorId(colorId:number){
+    let newPath = this.apiUrl+ 'cars/getcarsbycoloridwithdetails?colorid=' + colorId;
+    return this.httpClient.get<ListResponseModel<Car>>(newPath);
   }
-
-  
 }
+
+
+
